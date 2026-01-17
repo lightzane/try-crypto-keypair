@@ -1,12 +1,15 @@
 {
   "compilerOptions": {
+    "target": "esnext",
+    "moduleResolution": "node",
     "esModuleInterop": true,
     "noEmitOnError": true,
     "removeComments": true,
     "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "~/*": ["public/*"]
     }
   }
 }

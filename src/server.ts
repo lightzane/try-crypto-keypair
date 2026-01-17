@@ -12,15 +12,17 @@ async function start() {
   const vite = await createViteServer({
     root: path.join(process.cwd(), 'public'), // Set Vite root to 'public' directory
     server: { middlewareMode: true },
+    configFile: path.join(process.cwd(), 'vite.config.ts'),
   })
+
+  app.use(express.json()) // For parsing application/json
 
   // ! [IMPORTANT] Define API endpoints above catch-all middleware
   // ! so that API routes are registered first
-  // catch-all middleware = (app.use(async (req, res) => {...}) / See (vite-index-html.ts))
+  // catch-all middleware = (app.use(async (req, res) => {...}) // See (vite-index-html.ts)
   API_ENDPOINTS(app)
 
   app.use(vite.middlewares)
-  app.use(express.json()) // For parsing application/json
 
   // ! DO NOT let Express serve static files
   // app.use(express.static('public')) // ❌
